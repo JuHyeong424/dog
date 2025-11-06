@@ -107,6 +107,10 @@ export default function Home() {
                 airPollution={airPollution}
                 koreaTime={koreaTime}
                 currentLocation={currentLocation}
+                isWeatherLoading={isWeatherLoading}
+                isWeatherError={false}
+                isAirPollutionLoading={isAirPollutionLoading}
+                isAirPollutionError={false}
               />
             )}
           </div>
