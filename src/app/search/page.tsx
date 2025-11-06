@@ -1,9 +1,7 @@
 "use client";
 
-// --- [추가] --- useRouter를 import 합니다.
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-// --- [추가 끝] ---
 import { useInView } from "react-intersection-observer";
 import Image from "next/image";
 
@@ -19,7 +17,6 @@ import SaveButton from '@/components/common/SaveButton';
 
 type ActiveTab = 'products' | 'youtube' | 'web';
 
-// --- [추가] --- 검색할 카테고리 목록을 정의합니다.
 const filterOptions = {
   food: '사료',
   toy: '강아지 장난감',
@@ -32,9 +29,7 @@ const filterOptions = {
 
 function SearchResultList() {
   const searchParams = useSearchParams();
-  // --- [추가] --- router를 초기화합니다.
   const router = useRouter();
-  // --- [추가 끝] ---
   const searchTerm = searchParams.get('q') || '';
 
   const [activeTab, setActiveTab] = useState<ActiveTab>('products');
@@ -98,21 +93,17 @@ function SearchResultList() {
     }
   }, [searchTerm, activeTab, allProducts.length, allVideos.length, allBlogs.length]);
 
-  // --- [추가] --- 카테고리 클릭 핸들러 함수
   const handleFilterClick = (categoryLabel: string) => {
-    // 이미 선택된 카테고리를 다시 누르면 검색어를 초기화합니다.
     if (searchTerm === categoryLabel) {
       router.push('/search');
     } else {
       router.push(`/search?q=${categoryLabel}`);
     }
   };
-  // --- [추가 끝] ---
 
 
   return (
     <div className="w-full max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
-      {/* --- [추가] --- 카테고리 필터 섹션 */}
       <div className="flex justify-center flex-wrap gap-3 mb-12">
         {Object.entries(filterOptions).map(([key, label]) => (
           <button
@@ -126,8 +117,6 @@ function SearchResultList() {
           </button>
         ))}
       </div>
-      {/* --- [추가 끝] --- */}
-
 
       <section>
         {isFetching ? (
@@ -141,7 +130,6 @@ function SearchResultList() {
           <>
             <h2 className="text-2xl font-bold mb-6 text-center">"{searchTerm}" 검색 결과</h2>
 
-            {/* 탭 메뉴 */}
             <div className="flex justify-center border-b border-gray-200 mb-8">
               <button
                 onClick={() => setActiveTab('products')}
@@ -177,14 +165,12 @@ function SearchResultList() {
               {activeTab === 'products' && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                   {allProducts.map((product: Product, index: number) => (
-                    // [수정] position: relative 추가
                     <div key={`${product.productId}-${index}`} className="relative border rounded-lg overflow-hidden shadow-lg transition-transform hover:scale-105 bg-white">
-                      {/* [추가] SaveButton 컴포넌트 */}
                       <SaveButton
                         contentType="product"
                         contentId={product.productId}
                         contentData={{
-                          name: stripHtml(product.title), // HTML 태그 제거
+                          name: stripHtml(product.title),
                           image: product.image,
                           link: product.link,
                           price: product.lprice,

@@ -1,5 +1,3 @@
-// src/components/PlaceDetailModal.tsx (수정된 전체 파일)
-
 "use client";
 
 import { useState, useEffect } from 'react';
@@ -8,7 +6,7 @@ import { usePlaceDetails } from '@/hooks/places/usePlaceDetails';
 import { useAuth } from '@/context/AuthContext';
 import { createClient } from '@/lib/supabase/client';
 import { FaTimes, FaStar, FaBookmark, FaRegBookmark } from 'react-icons/fa';
-import { CgSpinner } from 'react-icons/cg'; // 로딩 아이콘 추가
+import { CgSpinner } from 'react-icons/cg';
 
 // 네이버 지도 아이콘 SVG
 const NaverMapIcon = () => (
@@ -38,8 +36,8 @@ export default function PlaceDetailModal({ placeId, onClose, currentLocation }: 
   const supabase = createClient();
   const router = useRouter();
   const [isSaved, setIsSaved] = useState(false);
-  const [isCheckingSave, setIsCheckingSave] = useState(true); // [추가] 저장 여부 확인 중 로딩 상태
-  const [isSaving, setIsSaving] = useState(false); // [추가] 저장/취소 API 요청 중 로딩 상태
+  const [isCheckingSave, setIsCheckingSave] = useState(true); // 저장 여부 확인 중 로딩 상태
+  const [isSaving, setIsSaving] = useState(false); // 저장/취소 API 요청 중 로딩 상태
 
   useEffect(() => {
     setIsSaved(false);
@@ -172,14 +170,13 @@ export default function PlaceDetailModal({ placeId, onClose, currentLocation }: 
 
               <button
                 onClick={handleSaveClick}
-                disabled={isCheckingSave || isSaving} // [수정] 저장 여부 확인 중이거나, 저장/취소 API 요청 중일 때 버튼 비활성화
+                disabled={isCheckingSave || isSaving}
                 className={`flex items-center justify-center gap-2 w-full max-w-xs px-5 py-3 rounded-full font-bold transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed
                   ${isSaved
                   ? 'bg-blue-500 text-white'
                   : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-100'
                 }`}
               >
-                {/* [수정] 로딩 상태에 따라 아이콘과 텍스트 변경 */}
                 {isSaving ? (
                   <CgSpinner className="animate-spin" />
                 ) : isSaved ? (

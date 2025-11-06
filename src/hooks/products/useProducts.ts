@@ -1,7 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { Product } from "@/types/products";
 
-// API 응답 전체의 타입을 정의합니다.
 interface ProductsApiResponse {
   products: Product[];
   nextStart?: number;

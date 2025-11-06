@@ -40,7 +40,6 @@ export async function GET(request: Request) {
     });
 
   } catch (error) {
-    // ... (에러 처리 부분은 이전과 동일)
     if (isAxiosError(error)) {
       console.error("Axios Error fetching from YouTube:", error.response?.data);
       return NextResponse.json({ error: 'Failed to fetch videos from YouTube', details: error.response?.data }, { status: 500 });

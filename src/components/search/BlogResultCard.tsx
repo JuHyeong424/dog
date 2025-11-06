@@ -9,12 +9,10 @@ interface BlogResultCardProps {
 
 export default function BlogResultCard({ blog }: BlogResultCardProps) {
   return (
-    // [수정] a 태그를 div로 바꾸고, position: relative 추가
     <div className="group relative flex flex-col bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 p-4">
-      {/* [추가] SaveButton 컴포넌트 */}
       <SaveButton
         contentType="web"
-        contentId={blog.link} // 블로그는 고유 ID가 없으므로 link를 ID로 사용
+        contentId={blog.link}
         contentData={{
           name: blog.title,
           snippet: blog.snippet,

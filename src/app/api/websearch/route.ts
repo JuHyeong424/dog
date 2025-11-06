@@ -4,7 +4,7 @@ import axios, { isAxiosError } from 'axios';
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const query = searchParams.get('query');
-  const startIndex = searchParams.get('startIndex'); // pageToken 대신 startIndex
+  const startIndex = searchParams.get('startIndex');
 
   if (!query) {
     return NextResponse.json({ error: 'Query is required' }, { status: 400 });
@@ -26,7 +26,7 @@ export async function GET(request: Request) {
         cx: SEARCH_ENGINE_ID,
         q: `강아지 ${query}`,
         num: resultsPerPage,
-        start: startIndex || 1, // startIndex가 없으면 1부터 시작
+        start: startIndex || 1,
       },
     });
 
@@ -40,7 +40,6 @@ export async function GET(request: Request) {
     const totalResults = parseInt(response.data.searchInformation?.totalResults || '0', 10);
     const currentStartIndex = parseInt(startIndex || '1', 10);
 
-    // 다음 페이지가 있는지 계산하여 nextStartIndex를 반환
     const nextStartIndex = currentStartIndex + resultsPerPage;
 
     return NextResponse.json({
@@ -48,7 +47,6 @@ export async function GET(request: Request) {
       nextStartIndex: nextStartIndex <= totalResults && blogs.length > 0 ? nextStartIndex : undefined,
     });
   } catch (error) {
-    // ... (에러 처리 부분은 이전과 동일)
     if (isAxiosError(error)) {
       console.error("Axios Error fetching from Web Search:", error.response?.data);
       return NextResponse.json({ error: 'Failed to fetch web results', details: error.response?.data }, { status: 500 });

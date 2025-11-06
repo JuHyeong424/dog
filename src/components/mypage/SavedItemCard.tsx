@@ -1,11 +1,8 @@
-// SavedItemCard.tsx (수정된 전체 파일)
-
 "use client";
 
 import Image from 'next/image';
 import { FaYoutube, FaShoppingBag, FaGlobe, FaMapMarkerAlt, FaTimes } from 'react-icons/fa';
 
-// ... (ContentData, SavedItem 인터페이스는 기존과 동일) ...
 interface ContentData {
   name: string;
   vicinity?: string;
@@ -28,7 +25,6 @@ interface SavedItem {
 }
 
 
-// --- [수정] Props 인터페이스에 onMouseEnter/Leave 추가 ---
 interface SavedItemCardProps {
   item: SavedItem;
   onItemClick: (placeId: string) => void;
@@ -39,7 +35,6 @@ interface SavedItemCardProps {
 
 const getGooglePhotoUrl = (ref: string) => `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${ref}&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`;
 
-// --- [수정] CardWrapper가 마우스 이벤트 props를 받도록 수정 ---
 const CardWrapper = ({ children, link, onClick, onMouseEnter, onMouseLeave }: {
   children: React.ReactNode,
   link?: string,
@@ -74,7 +69,6 @@ const TypeIcon = ({ type }: { type: string }) => {
   return <div className="absolute top-2 left-2 z-10 bg-white p-1.5 rounded-full shadow">{icons[type as keyof typeof icons]}</div>;
 };
 
-// --- [수정] 컴포넌트 함수가 onMouseEnter/Leave props를 받도록 수정 ---
 export default function SavedItemCard({ item, onItemClick, onDelete, onMouseEnter, onMouseLeave }: SavedItemCardProps) {
   const { content_type, content_data } = item;
 
@@ -98,7 +92,6 @@ export default function SavedItemCard({ item, onItemClick, onDelete, onMouseEnte
   switch (content_type) {
     case 'place':
       return (
-        // --- [수정] CardWrapper에 props 전달 ---
         <CardWrapper
           onClick={() => onItemClick(item.content_id)}
           onMouseEnter={onMouseEnter}

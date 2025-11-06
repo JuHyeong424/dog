@@ -1,5 +1,3 @@
-// src/context/AuthContext.tsx (수정된 전체 파일)
-
 "use client";
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';

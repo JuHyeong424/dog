@@ -37,7 +37,6 @@ export default function PlacesPage() {
     return { isGoodWeather: goodWeather, recommendedSearchQuery: query };
   }, [weather, airPollution]);
 
-  // 이제 이 코드는 usePlaces 훅의 정의와 일치하므로 오류가 발생하지 않습니다.
   const { data: recommendedPlaces = [], isLoading: isPlacesLoading } = usePlaces({
     lat: currentLocation?.lat,
     lon: currentLocation?.lng,

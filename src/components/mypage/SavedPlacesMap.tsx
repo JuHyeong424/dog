@@ -1,11 +1,8 @@
-// SavedPlacesMap.tsx (수정된 전체 파일)
-
 "use client";
 
 import { GoogleMap, useJsApiLoader, MarkerF } from '@react-google-maps/api';
 import React, { useEffect, useMemo, useState } from 'react';
 
-// ... (Location, SavedPlace 인터페이스 정의는 기존과 동일) ...
 interface Location { lat: number; lng: number; }
 interface SavedPlace {
   content_id: string;
@@ -15,11 +12,11 @@ interface SavedPlacesMapProps {
   places: SavedPlace[];
   currentLocation: Location | null;
   onPlaceClick: (placeId: string) => void;
-  hoveredPlaceId: string | null; // [추가] 호버된 장소 ID
+  hoveredPlaceId: string | null;
 }
 
 const libraries: ("marker")[] = ['marker'];
-const mapContainerStyle = { width: '100%', height: '100%' }; // 부모 div의 높이를 따르도록 수정
+const mapContainerStyle = { width: '100%', height: '100%' };
 const DEFAULT_CENTER = { lat: 37.5665, lng: 126.9780 };
 
 
@@ -48,7 +45,6 @@ export default function SavedPlacesMap({ places, currentLocation, onPlaceClick, 
     return DEFAULT_CENTER;
   }, [currentLocation, validPlaces]);
 
-  // [추가] 호버된 장소로 지도 중심을 이동시키는 로직
   useEffect(() => {
     if (!map || !hoveredPlaceId) return;
 

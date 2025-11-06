@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 import { createClient } from "@/lib/supabase/client";
-// 아이콘을 사용하기 위해 react-icons 라이브러리를 import 합니다.
 import { FaUserCircle, FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
 
 export default function AuthNav() {

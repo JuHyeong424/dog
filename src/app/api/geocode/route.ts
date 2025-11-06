@@ -62,9 +62,7 @@ export async function GET(request: Request) {
         vicinity: place.vicinity,
         distance: distanceInfo?.distance?.text || 'N/A',
         duration: distanceInfo?.duration?.text || 'N/A',
-        // --- 바로 이 줄이 핵심입니다! ---
         geometry: place.geometry,
-        // ---------------------------------
       };
     });
 

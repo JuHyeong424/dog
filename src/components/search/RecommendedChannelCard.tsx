@@ -23,15 +23,13 @@ export default function RecommendedChannelCard({ channel }: RecommendedChannelCa
       className="group flex items-center gap-4 p-4 bg-white rounded-xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300"
     >
       <div className="flex-shrink-0 w-20 h-20 relative">
-        {/* --- 이 부분을 수정합니다 --- */}
         <Image
           src={channel.imageUrl}
           alt={`${channel.name} channel logo`}
-          fill // layout="fill" 대신 사용
-          style={{ objectFit: 'cover' }} // objectFit="cover" 대신 사용
+          fill
+          style={{ objectFit: 'cover' }}
           className="rounded-full"
         />
-        {/* ------------------------- */}
       </div>
       <div className="flex-grow">
         <h3 className="text-lg font-bold text-gray-800">{channel.name}</h3>

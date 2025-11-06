@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link"; // Link를 다시 import 합니다.
+import Link from "next/link";
 import { FaTree, FaStore, FaMapMarkerAlt } from "react-icons/fa";
 
 interface Place {
@@ -28,7 +28,6 @@ export default function RecommendedPlaces({ places, isGoodWeather, limit, onPlac
   const title = isGoodWeather ? "추천 산책 장소" : "비 올 때 추천 장소";
   const placesToShow = limit ? places.slice(0, limit) : places;
 
-  // 1. 흰색 배경과 제목, 더보기 링크를 다시 추가합니다.
   return (
     <div className="bg-white rounded-xl shadow-md p-6 h-full">
       <div className="flex justify-between items-center mb-4">
@@ -36,7 +35,6 @@ export default function RecommendedPlaces({ places, isGoodWeather, limit, onPlac
         <Link href="/places" className="text-blue-500 font-semibold text-sm">더보기 &rarr;</Link>
       </div>
       <ul className="space-y-3">
-        {/* 2. 장소가 없을 때의 메시지를 추가하면 더 좋습니다. */}
         {placesToShow.length === 0 ? (
           <li className="text-gray-500">추천 장소가 없습니다.</li>
         ) : (

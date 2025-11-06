@@ -23,12 +23,9 @@ const CATEGORIES: Category[] = [
 ];
 
 export default function Home() {
-  // --- 상태 관리 ---
   const [selectedPlaceId, setSelectedPlaceId] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>(CATEGORIES[0].query);
-  // 길찾기 관련 상태를 모두 삭제합니다.
 
-  // --- 데이터 로딩 (기존과 동일) ---
   const { currentLocation, error: locationError } = useCurrentLocation();
   const koreaTime = useCurrentDate();
   const { data: weather, isLoading: isWeatherLoading } = useOpenWeather({ lat: currentLocation?.lat, lon: currentLocation?.lng });
@@ -63,20 +60,15 @@ export default function Home() {
   const recommendedPlaces = isGoodWeather ? parkPlaces : cafePlaces;
   const isRecPlacesLoading = isGoodWeather ? isParkLoading : isCafeLoading;
 
-  // 길찾기 관련 콜백 및 핸들러를 모두 삭제합니다.
-
-  // --- 기존 이벤트 핸들러 ---
   const handlePlaceClick = (placeId: string) => setSelectedPlaceId(placeId);
   const handleCloseModal = () => setSelectedPlaceId(null);
   const handleCategorySelect = (query: string) => setSelectedCategory(query);
 
-  // --- 로딩 및 에러 화면 처리 (기존과 동일) ---
   if (locationError) return <div className="p-10 text-center">위치 정보를 가져올 수 없습니다.</div>;
   if (!currentLocation) return <div className="p-10 text-center">현재 위치를 파악하는 중입니다...</div>;
 
   return (
     <div className="bg-gray-100 flex flex-col items-center gap-10 w-full min-h-screen">
-      {/* DirectionsService 컴포넌트를 완전히 삭제합니다. */}
       <main className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 flex-grow">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold">날씨 기반 산책 적합도</h1>

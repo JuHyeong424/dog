@@ -1,11 +1,10 @@
-"use client"; // AuthProvider를 사용하므로 클라이언트 컴포넌트로 유지합니다.
+"use client";
 
 import Link from "next/link";
 import "@/app/globals.css";
 import Providers from "@/app/providers";
 import ProductSearchBar from "@/components/search/ProductSearchBar";
 import { AuthProvider } from "@/context/AuthContext";
-// --- [추가] --- 방금 만든 AuthNav 컴포넌트를 가져옵니다.
 import AuthNav from "@/components/layout/AuthNav";
 
 export default function RootLayout({children}: { children: React.ReactNode }) {
@@ -26,12 +25,9 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
             <ProductSearchBar/>
           </div>
 
-          {/* --- [수정] --- 오른쪽 구역 (메뉴) */}
           <div className="flex-1 flex justify-end items-center">
             <AuthNav />
           </div>
-          {/* --- [수정 끝] --- */}
-
         </header>
 
         <main className="flex-grow flex justify-center bg-gray-100">

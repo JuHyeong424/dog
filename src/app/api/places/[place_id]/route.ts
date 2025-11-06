@@ -19,9 +19,7 @@ export async function GET(request: NextRequest) {
         params: {
           place_id: place_id,
           language: 'ko',
-          // --- 바로 이 부분에 'geometry'를 추가합니다! ---
           fields: 'name,vicinity,formatted_phone_number,photos,rating,reviews,opening_hours,geometry',
-          // ------------------------------------------------
           key: apiKey,
         },
       }

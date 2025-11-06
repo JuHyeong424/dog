@@ -1,6 +1,5 @@
 "use client";
 
-// DirectionsRenderer를 import 목록에서 삭제합니다.
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import React, { useEffect, useState } from 'react';
 
@@ -12,7 +11,6 @@ interface Place {
   geometry: { location: { lat: number; lng: number; }; };
 }
 
-// PlacesMapProps에서 directions 속성을 삭제합니다.
 interface PlacesMapProps {
   center: { lat: number; lng: number };
   places: Place[];
@@ -59,8 +57,6 @@ const CustomMarker = ({ map, place, color, onClick, isCurrentLocation }: {
   return null;
 };
 
-
-// 컴포넌트 props에서 directions를 삭제합니다.
 export default function PlacesMap({ center, places, color, onPlaceClick }: PlacesMapProps) {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',

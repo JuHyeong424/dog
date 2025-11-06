@@ -9,7 +9,6 @@ import PlaceDetailModal from '@/components/places/PlaceDetailModal';
 import SavedItemCard from '@/components/mypage/SavedItemCard';
 import SavedPlacesMap from '@/components/mypage/SavedPlacesMap';
 
-// ... (SavedItem, Location, Section 컴포넌트 정의는 기존과 동일) ...
 interface SavedItem {
   id: string;
   content_type: 'place' | 'product' | 'youtube' | 'web';
@@ -44,7 +43,6 @@ export default function MyPage() {
   const [showAllPlaces, setShowAllPlaces] = useState(false);
   const INITIAL_PLACE_COUNT = 4;
 
-  // ... (useEffect 및 다른 함수들은 기존과 동일) ...
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -140,7 +138,6 @@ export default function MyPage() {
 
         {savedItems.length > 0 ? (
           <div>
-            {/* --- [수정] 저장한 장소 섹션 레이아웃 (좌우 분할) --- */}
             <Section title="저장한 장소" items={places}>
               <div className="grid grid-cols-1 md:grid-cols-5 gap-8 relative">
 
@@ -158,7 +155,6 @@ export default function MyPage() {
                   )}
                 </div>
 
-                {/* 2. 오른쪽 카드 목록 영역 (md 화면 이상에서 3/5 차지) */}
                 <div className="md:col-span-3">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     {visiblePlaces.map(item => (
@@ -188,7 +184,6 @@ export default function MyPage() {
               </div>
             </Section>
 
-            {/* --- 나머지 섹션들은 기존과 동일 --- */}
             <Section title="저장한 상품" items={products}>{renderItemGrid(products)}</Section>
             <Section title="저장한 YouTube 영상" items={youtubeVideos}>{renderItemGrid(youtubeVideos)}</Section>
             <Section title="저장한 웹 페이지" items={webPages}>{renderItemGrid(webPages)}</Section>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation'; // next/router가 아닌 next/navigation을 사용합니다.
+import { useRouter } from 'next/navigation';
 import { FaSearch } from 'react-icons/fa';
 
 export default function ProductSearchBar() {
@@ -13,7 +13,6 @@ export default function ProductSearchBar() {
       alert("검색어를 입력해주세요.");
       return;
     }
-    // /products 페이지로 이동하면서 q라는 쿼리 파라미터에 검색어를 담아 보냅니다.
     router.push(`/search?q=${inputValue}`);
   };
 
